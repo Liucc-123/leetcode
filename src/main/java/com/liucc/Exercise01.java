@@ -4,7 +4,7 @@ package com.liucc;
  * Hello world!
  *
  */
-public class App 
+public class Exercise01
 {
     public static void main( String[] args )
     {

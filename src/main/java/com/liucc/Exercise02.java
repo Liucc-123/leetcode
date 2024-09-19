@@ -17,27 +17,38 @@ package com.liucc;
  */
 public class Exercise02 {
     public static void main(String[] args) {
-//        String name = "alex";
-        String name = "leelee";
-//        String typed = "aaleex";
-        String typed = "lleeelee";
+        String name = "alex";
+//        String name = "leelee";
+        String typed = "aaleex";
+//        String typed = "lleeelee";
         System.out.println(isLongPressedName(name, typed));
     }
 
+    /**
+     * 实现思路：
+     * 准备两个指针，一个用于扫描name，一个用于扫描typed
+     * 对于用户键入的字符，其存在两种情况：
+     *  1、正确键入名称name，此时，两个指针均后移
+     *  2、重复键入。仅typed指针后移
+     * 当扫描完毕后，检查name的所有字符是否全被扫描。如果均已被扫描
+     * @param name
+     * @param typed
+     * @return
+     */
+
     public static boolean isLongPressedName(String name, String typed) {
         int i = 0, j = 0;
-        while (i < typed.length()) {
-            char c1 = name.charAt(i);
-            char c2 = typed.charAt(j);
-            if (i < name.length() && c1 == c2){ //
+        while (j < typed.length()) {
+            if (i < name.length() && name.charAt(i) == typed.charAt(j)){ //字符匹配
                 i++;
                 j++;
-            } else if (j >0 && c2 == typed.charAt(j - 1)) {
+            } else if (j >0 && typed.charAt(j) == typed.charAt(j - 1)) {// 字符重复键入
                 j++;
             }else {
                 return false;
             }
         }
+        // typed扫描完成后，检查name是否全部被扫描。如果i==name.length()，说明每个字符都已匹配
         return i==name.length();
     }
 }
